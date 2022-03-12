@@ -1,0 +1,20 @@
+https://leetcode.com/problems/combination-sum
+
+class Solution(object):
+    def combinationSum(self, candidates, target):
+        final=[]
+        empty=[]
+        def combine(ls,i,t,cand):
+            if i>len(cand)-1:
+                if t==0:
+                    final.append(ls[:])
+                return
+        
+            if cand[i]<=t:
+                ls.append(cand[i])
+                combine(ls,i,t-cand[i],cand)
+                ls.pop(-1)
+            combine(ls,i+1,t,cand)
+            
+        combine(empty,0,target,candidates)
+        return final
