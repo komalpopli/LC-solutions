@@ -1,0 +1,22 @@
+https://leetcode.com/problems/subsets-ii/
+class Solution(object):
+    def subsetsWithDup(self, nums):
+        final=[]
+        empty=[]
+        
+        def subsets(subset,i,nums):
+            if i==len(nums):
+                for i in range(0,len(final)): 
+                    if sorted(final[i])==sorted(subset):
+                        return
+                final.append(subset[:])
+                return
+
+            subsets(subset,i+1,nums)
+            subset.append(nums[i])
+            subsets(subset,i+1,nums)
+            subset.pop()
+            
+        subsets(empty,0,nums)    
+        return final
+    
