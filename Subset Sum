@@ -1,0 +1,26 @@
+https://practice.geeksforgeeks.org/problems/subset-sums2234/1#
+
+def main():
+    def subsetSums(arr):
+        
+        final=[]
+        empty=[]
+        
+        def subsets(subset, i, arr):
+            if i == len(arr):
+                final.append(sum(subset[:]))
+                return
+            subsets(subset,i+1,arr)
+            subset.append(arr[i])
+        
+            subsets(subset,i+1,arr)
+            subset.pop()  
+        
+        subsets(empty,0,arr)
+        return final
+    f=subsetSums([1,2,3])
+    print(f)
+    return
+if __name__=="__main__":
+    main()
+
