@@ -1,0 +1,23 @@
+https://leetcode.com/problems/combination-sum-ii
+
+class Solution(object):
+    def combinationSum2(self, candidates, target):
+        empty=[]
+        final=[]
+        candidates=sorted(candidates)
+        def combine(ls,i,t,cand):
+            if t==0: 
+                final.append(ls[:])               
+                return
+            
+            for m in range(i,len(cand)):
+                if m>i and cand[m]==cand[m-1]:
+                    continue
+                if cand[m]>t:
+                    break
+                ls.append(cand[m])
+                combine(ls,m+1,t-cand[m],cand)
+                ls.pop(-1)
+            
+        combine(empty,0,target,candidates)
+        return final
