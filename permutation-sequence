@@ -1,0 +1,27 @@
+https://leetcode.com/problems/permutation-sequence
+
+class Solution(object):
+    def getPermutation(self, n, k):
+        final=[]
+        empty=[]
+        s=[]
+        for i in range(1,n+1):
+            s.append(i)
+        temp=[None]*len(s)
+        def cOutput(s,empty,temp):
+            if len(list(empty))==len(list(s)):
+                x=[str(x) for x in empty]
+                final.append(''.join(x))
+                return
+            
+            for i in range(0,len(s)):
+                if not temp[i]:
+                    temp[i]=True
+                    empty.append(s[i])
+                    cOutput(s,empty,temp)
+                    empty.pop(-1)
+                    temp[i]=False
+                    
+                    
+        cOutput(s,empty,temp)
+        return final[k-1]
