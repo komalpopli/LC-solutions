@@ -1,0 +1,29 @@
+https://leetcode.com/problems/palindrome-partitioning/
+
+class Solution(object):
+    def partition(self,s):
+        final=[]
+        empty=[]
+        def palinS(m,index,i):
+            l=index
+            h=i
+            while h>l:
+                if m[l]!=m[h]:
+                    return False
+                l=l+1
+                h=h-1
+            return True    
+        
+        def combine(st,index,empty):
+            if index>len(st)-1:
+                final.append(empty[:])
+                return
+            for i in range(index,len(st)):
+                if palinS(st,index,i):
+                    empty.append(st[index:i+1])
+                    combine(st,i+1,empty)
+                    empty.pop(-1)
+            
+        combine(s,0,empty)
+        return final
+                    
