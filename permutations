@@ -1,0 +1,24 @@
+https://leetcode.com/problems/permutations
+
+class Solution(object):
+    def permute(self, nums):
+        final=[]
+        empty=[]
+        temp=[None]*len(nums)
+        
+        
+        def combine(empty,temp,nums):
+            if len(empty)==len(nums):
+                final.append(empty[:])
+                return
+
+            for i in range(len(nums)):
+                if not temp[i]:
+                    temp[i]=True
+                    empty.append(nums[i])
+                    combine(empty,temp,nums)
+                    empty.pop(-1)
+                    temp[i]=False
+   
+        combine(empty,temp,nums)
+        return final
