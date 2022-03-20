@@ -1,0 +1,21 @@
+https://leetcode.com/problems/subsets/
+
+class Solution(object):
+    def subsets(self, nums):
+        global final
+        final=[]
+        empty=[]
+        def subsetAll(subset, i, arr):
+            if i==len(arr):
+                final.append(subset[:])
+                return 
+
+            subsetAll(subset, i+1, arr)  
+
+            subset.append(arr[i])
+            x=subsetAll(subset, i+1, arr)
+            subset.pop(-1)
+		
+        subsetAll(empty, 0, nums)
+        return final 
+         
