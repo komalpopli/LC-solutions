@@ -1,0 +1,15 @@
+https://leetcode.com/problems/range-sum-of-bst/
+
+class Solution(object):
+    def rangeSumBST(self, root, low, high):
+        d=[]
+        if not root:
+            return
+        def findsum(root):
+            if not root:
+                return
+            if root.val>=low and root.val<=high:
+                d.append(root.val)
+            findsum(root.left)    
+            findsum(root.right)
+        return sum(d)
